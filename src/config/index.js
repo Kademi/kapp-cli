@@ -2,9 +2,8 @@ const config = require('./config');
 
 module.exports = (program) => {
     program
-        .command('config')
+        .command('config <name>')
         .description('Set or get your configuration')
-        .requiredOption('-cn, --config-name <configName>', 'Name of configuration')
-        .option('-cv, --configValue <configValue>', 'Value of configuration')
+        .option('-cv, --config-value <configValue>', 'Value of configuration. Leave it blank if you want to get value')
         .action(config);
 };

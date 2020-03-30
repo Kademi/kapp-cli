@@ -1,7 +1,7 @@
 const { getMarketFolder, logger, increaseVersion } = require('../utils');
 const path = require('path');
 const fs = require('fs');
-const updateDepended = require('./updateDepended');
+const updateAppByFolder = require('./updateAppByFolder');
 
 module.exports = async (name, cmdObj) => {
     logger.info(cmdObj._description);
@@ -35,7 +35,12 @@ module.exports = async (name, cmdObj) => {
 
         const versionPath = path.join(appPath, 'app-version.txt');
         const currentVersion = fs.readFileSync(versionPath);
-        const newVersion = increaseVersion(`${currentVersion}`);
+        let newVersion;
+        if (cmdObj.newVersion) {
+            newVersion = cmdObj.newVersion;
+        } else {
+            newVersion = increaseVersion(`${currentVersion}`);
+        }
         logger.info(` -> Increase version of "${name}" from "${currentVersion}" to "${newVersion}"`);
         fs.writeFileSync(versionPath, newVersion);
 
@@ -43,10 +48,10 @@ module.exports = async (name, cmdObj) => {
             logger.info(` -> Updating version to depended apps...`);
 
             let updatedNumber = 0;
-            updatedNumber += updateDepended(name, newVersion, 'apps');
-            updatedNumber += updateDepended(name, newVersion, 'libs');
-            updatedNumber += updateDepended(name, newVersion, 'repositories');
-            updatedNumber += updateDepended(name, newVersion, 'themes')
+            updatedNumber += updateAppByFolder(name, newVersion, 'apps');
+            updatedNumber += updateAppByFolder(name, newVersion, 'libs');
+            updatedNumber += updateAppByFolder(name, newVersion, 'repositories');
+            updatedNumber += updateAppByFolder(name, newVersion, 'themes')
 
             logger.info(` -> Updated on ${updatedNumber} app(s)`);
         }
