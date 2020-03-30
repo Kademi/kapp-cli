@@ -1,0 +1,30 @@
+{
+    "name": "@kademi/kapp-cli",
+    "version": "1.0.0",
+    "description": "Kademi CLI for KodeJS Application",
+    "main": "bin/kapp.js",
+    "bin": {
+        "meen": "bin/kapp.js"
+    },
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Kademi/kapp-cli.git"
+    },
+    "keywords": [],
+    "author": "Kademi <kademi.co>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Kademi/kapp-cli/issues"
+    },
+    "homepage": "https://github.com/Kademi/kapp-cli#readme",
+    "dependencies": {
+        "chalk": "^3.0.0",
+        "clear": "^0.1.0",
+        "commander": "^5.0.0",
+        "figlet": "^1.2.4",
+        "handlebars": "^4.7.2",
+        "log-update": "^3.3.0",
+        "make-dir": "^3.0.0"
+    }
+}
