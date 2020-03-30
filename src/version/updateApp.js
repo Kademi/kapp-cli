@@ -16,10 +16,10 @@ module.exports = (appName, newVersion, folderName, subFolder, subFolderPath) => 
                 if (dependedApp.appId === appName) {
                     dependedApp.branch = newVersion;
                     isUpdated = true;
+                    fs.writeFileSync(adminDependenciesPath, JSON.stringify(adminDependencies, ' ', 4));
+                    break;
                 }
             }
-
-            fs.writeFileSync(adminDependenciesPath, JSON.stringify(adminDependencies, ' ', 2));
         }
     }
 
@@ -34,10 +34,10 @@ module.exports = (appName, newVersion, folderName, subFolder, subFolderPath) => 
                 if (dependedApp.appId === appName) {
                     dependedApp.branch = newVersion;
                     isUpdated = true;
+                    fs.writeFileSync(commonDependenciesPath, JSON.stringify(commonDependencies, ' ', 4));
+                    break;
                 }
             }
-
-            fs.writeFileSync(commonDependenciesPath, JSON.stringify(commonDependencies, ' ', 2));
         }
     }
 
@@ -53,10 +53,10 @@ module.exports = (appName, newVersion, folderName, subFolder, subFolderPath) => 
                 if (dependedApp.appId === appName) {
                     dependedApp.branch = newVersion;
                     isUpdated = true;
+                    fs.writeFileSync(webDependenciesPath, JSON.stringify(webDependencies, ' ', 4));
+                    break;
                 }
             }
-
-            fs.writeFileSync(webDependenciesPath, JSON.stringify(webDependencies, ' ', 2));
         }
     }
 
