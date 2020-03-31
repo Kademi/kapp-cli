@@ -4,7 +4,7 @@
     "description": "Kademi CLI for KodeJS Application",
     "main": "bin/kapp.js",
     "bin": {
-        "meen": "bin/kapp.js"
+        "kapp": "bin/kapp.js"
     },
     "scripts": {},
     "repository": {
