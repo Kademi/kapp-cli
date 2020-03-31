@@ -1,6 +1,6 @@
 {
     "name": "@kademi/kapp-cli",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "description": "Kademi CLI for KodeJS Application",
     "main": "bin/kapp.js",
     "bin": {
