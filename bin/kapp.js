@@ -34,14 +34,13 @@ if (process.argv.indexOf('-h') !== -1 || process.argv.indexOf('--help') !== -1) 
 }
 
 
+// Print banner when no command
+// -----------------------------------------
+if (process.argv.length <= 2) {
+    printBanner();
+}
+
+
 // Start program
 // -----------------------------------------
 program.parse(process.argv);
-
-
-// Print help when no command
-// -----------------------------------------
-if (!process.argv.slice(2).length) {
-    printBanner();
-    program.outputHelp();
-}

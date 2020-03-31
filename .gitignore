@@ -1,4 +1,5 @@
 .idea
+.ksync
 test
 node_modules
 package-lock.json
