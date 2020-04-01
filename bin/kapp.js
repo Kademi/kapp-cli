@@ -14,7 +14,7 @@ program.usage(`[command] [options] `);
 
 // Commands
 // -----------------------------------------
-require('../src/config')(program);
+// require('../src/config')(program);
 require('../src/version')(program);
 require('../src/sync')(program);
 
