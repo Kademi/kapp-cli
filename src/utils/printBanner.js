@@ -9,15 +9,13 @@ module.exports = () => {
     clear();
     console.log(
         chalk.blue(
-            figlet.textSync('kapp-cli', {
-                // font: 'Swamp Land',
-                // font: '3D-ASCII',
-                // font: 'Alligator',
-                // font: 'Larry 3D',
-                // font: 'Rammstein',
-                // font: 'Rounded',
+            `=====================[ (c) Kademi ]=====================\n`
+            +
+            figlet.textSync('Kapp CLI', {
                 horizontalLayout: 'full',
             })
+            +
+            `\n==================[ http://kademi.co ]==================`
         )
     );
 };
