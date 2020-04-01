@@ -36,3 +36,6 @@ Options:
 
 ```
 **Note**: `kapp sync` has same options with `ksync3.jar`. Instead of `java -jar /path/to/ksync3.jar params...`, you just run `kapp sync params...`. Documentation for KSync3 is available at [here](https://docs.kademi.co/blogs/docs-kb/developing-with-ksync/).
+
+## License
+Please read at [here](./LICENSE.md)
