@@ -1,24 +1,24 @@
-const { getMarketFolder, logger, increaseVersion } = require('../utils');
+const { logger, increaseVersion } = require('../utils');
 const path = require('path');
 const fs = require('fs');
 const updateAppByFolder = require('./updateAppByFolder');
+const CURRENT_FOLDER = process.cwd();
 
 module.exports = async (name, cmdObj) => {
     logger.info(cmdObj._description);
 
     try {
-        const marketFolder = getMarketFolder();
-        if (!marketFolder) {
-            return;
-        }
 
-        const appPathAtApps = path.join(marketFolder, 'apps', name);
-        const appPathAtLibs = path.join(marketFolder, 'libs', name);
-        const appPathAtThemes = path.join(marketFolder, 'repositories', name);
-        const appPathAtRepo = path.join(marketFolder, 'themes', name);
+        const appPathAtCurrent = path.join(CURRENT_FOLDER, name);
+        const appPathAtApps = path.join(CURRENT_FOLDER, 'apps', name);
+        const appPathAtLibs = path.join(CURRENT_FOLDER, 'libs', name);
+        const appPathAtThemes = path.join(CURRENT_FOLDER, 'repositories', name);
+        const appPathAtRepo = path.join(CURRENT_FOLDER, 'themes', name);
         let appPath;
 
-        if (fs.existsSync(appPathAtApps)) {
+        if (fs.existsSync(appPathAtCurrent)) {
+            appPath = appPathAtCurrent;
+        } else if (fs.existsSync(appPathAtApps)) {
             appPath = appPathAtApps;
         } else if (fs.existsSync(appPathAtLibs)) {
             appPath = appPathAtLibs;
@@ -34,7 +34,7 @@ module.exports = async (name, cmdObj) => {
         }
 
         const versionPath = path.join(appPath, 'app-version.txt');
-        const currentVersion = fs.readFileSync(versionPath);
+        const currentVersion = `${fs.readFileSync(versionPath)}`.trim();
         let newVersion;
         if (cmdObj.newVersion) {
             newVersion = cmdObj.newVersion;
@@ -48,15 +48,16 @@ module.exports = async (name, cmdObj) => {
             logger.info(` -> Updating version to depended apps...`);
 
             let updatedNumber = 0;
-            updatedNumber += updateAppByFolder(name, newVersion, 'apps');
-            updatedNumber += updateAppByFolder(name, newVersion, 'libs');
-            updatedNumber += updateAppByFolder(name, newVersion, 'repositories');
-            updatedNumber += updateAppByFolder(name, newVersion, 'themes')
+            updatedNumber += updateAppByFolder(name, newVersion, CURRENT_FOLDER);
+            updatedNumber += updateAppByFolder(name, newVersion, path.join(CURRENT_FOLDER, 'apps'));
+            updatedNumber += updateAppByFolder(name, newVersion, path.join(CURRENT_FOLDER, 'libs'));
+            updatedNumber += updateAppByFolder(name, newVersion, path.join(CURRENT_FOLDER, 'repositories'));
+            updatedNumber += updateAppByFolder(name, newVersion, path.join(CURRENT_FOLDER, 'themes'));
 
             logger.info(` -> Updated on ${updatedNumber} app(s)`);
         }
 
-        logger.info(` -> Done`);
+        logger.info(` -> Done!`);
     } catch (e) {
         logger.error(`${e.message}`);
     }

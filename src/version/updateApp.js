@@ -2,7 +2,7 @@ const { logger } = require('../utils');
 const fs = require('fs');
 const path = require('path');
 
-module.exports = (appName, newVersion, folderName, subFolder, subFolderPath) => {
+module.exports = (appName, newVersion, subFolder, subFolderPath) => {
     let isUpdated = false;
     const updateAppFolder = (appFolderName) => {
         const adminDependenciesPath = path.join(subFolderPath, appFolderName, 'theme', 'apps', subFolder, 'dependencies.json');
@@ -27,7 +27,7 @@ module.exports = (appName, newVersion, folderName, subFolder, subFolderPath) => 
     updateAppFolder('website');
 
     if (isUpdated) {
-        logger.info(` -> Update on "${folderName}/${subFolder}"`);
+        logger.info(` -> Update on "${subFolder}"`);
     }
 
     return isUpdated;
