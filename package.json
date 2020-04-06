@@ -12,13 +12,14 @@
         "url": "git+https://github.com/Kademi/kapp-cli.git"
     },
     "keywords": [],
-    "author": "Kademi <kademi.co>",
+    "author": "Kademi (http://kademi.co)",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/Kademi/kapp-cli/issues"
     },
     "homepage": "https://github.com/Kademi/kapp-cli#readme",
     "dependencies": {
+        "@kademi/ksync": "^1.0.0",
         "chalk": "^3.0.0",
         "clear": "^0.1.0",
         "commander": "^5.0.0",

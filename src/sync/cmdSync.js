@@ -1,12 +1,11 @@
 const { logger } = require('../utils');
-const path = require('path');
 const { spawn } = require('child_process');
 
 module.exports = async (params, cmdObj) => {
     logger.info(cmdObj._description);
 
     try {
-        const ksyncPath = path.join(__dirname, 'lib', 'ksync3.jar');
+        const ksyncPath = require.resolve('@kademi/ksync/dist/ksync3.jar');
         const ksync = spawn('java', ['-jar', ksyncPath, ...params]);
 
         process.stdin.pipe(ksync.stdin);
