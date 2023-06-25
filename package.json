@@ -26,6 +26,6 @@
         "figlet": "^1.2.4",
         "handlebars": "^4.7.2",
         "log-update": "^3.3.0",
-        "make-dir": "^3.0.0"
+        "make-dir": "^4.0.0"
     }
 }
